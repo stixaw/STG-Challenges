@@ -1,6 +1,9 @@
 require('chromedriver');
 var webdriver = require('selenium-webdriver');
 var assert = require("chai").assert;
+var By = webdriver.By;
+var until = webdriver.until;
+var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
     this.timeout(20000);
@@ -31,26 +34,21 @@ describe("challenge1 suite", function(){
     // This is easier to understand than to use promise…. then(function()).
     it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function() {
         var title = await driver.getTitle();
-        return assert.include("Auto Auction - Copart USA");
+        return assert.include(title, "Auto Auction - Copart USA");
     });
 
     // have to do find element
     it("Should search on copart for porschel", async function(){
-        var element = await driver.findElement(By.Id("input-search"))
-        return element.sendKeys("Exotic" + Key.ENTER)
+        var element = await driver.findElement(By.id("input-search"));
+        return element.sendKeys("Exotic" + Key.ENTER);
     });
 
-    // it("Should run search on google for porsche", async function() {
-    //     var element = await driver.findElement(By.name("q"));
-    //     return element.sendKeys("Porsche" + Key.ENTER)
-    // });
-
-    it("Should assert 911 is in list of results", async function() {
-        await driver.wait(until.titleContains('Porsche'), 10000);
+    it("Should assert Porsche is in list of results", async function() {
+        await driver.wait(until.titleContains('Exotic For Auction at Copart'), 12000);
         console.log(await driver.getTitle());
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html);
-        return assert.include(html, "911");
+        return assert.include(html, "Porsche");
     });
 
 

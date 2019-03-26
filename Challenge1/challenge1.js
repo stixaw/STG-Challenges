@@ -1,6 +1,9 @@
 require('chromedriver');
 var webdriver = require('selenium-webdriver');
 var assert = require("chai").assert;
+var By = webdriver.By;
+var until = webdriver.until;
+var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
     this.timeout(20000);
@@ -11,6 +14,8 @@ describe("challenge1 suite", function(){
        driver = new webdriver.Builder()
        .withCapabilities(webdriver.Capabilities.chrome())
        .build();
+       var By = driver.By;
+
     });
 
     after(function () {
@@ -27,6 +32,7 @@ describe("challenge1 suite", function(){
     //         assert.equal(title, "Google");
     //     });
     // });
+    
     // If you don’t want to use promises, you can use awaits.  
     // This is easier to understand than to use promise…. then(function()).
     it("The title is 'Google'", async function() {
