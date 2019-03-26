@@ -1,9 +1,11 @@
 require('chromedriver');
-var webdriver = require('selenium-webdriver');
+const {Builder, By, until, Key} = require('selenium-webdriver');
 var assert = require("chai").assert;
-var By = webdriver.By;
-var until = webdriver.until;
-var Key = webdriver.Key;
+// var By = webdriver.By;
+// var until = webdriver.until;
+// var Key = webdriver.Key;
+
+
 
 describe("challenge1 suite", function(){
     this.timeout(20000);
@@ -11,9 +13,10 @@ describe("challenge1 suite", function(){
 
     before(function () {
     // initializing chrome driver
-       driver = new webdriver.Builder()
-       .withCapabilities(webdriver.Capabilities.chrome())
-       .build();
+    //    driver = new webdriver.Builder()
+    //    .withCapabilities(webdriver.Capabilities.chrome())
+    //    .build();
+        driver = new Builder().forBrowser('chrome').build();
     });
 
     after(function () {
@@ -30,9 +33,10 @@ describe("challenge1 suite", function(){
     //         assert.include("Auto Auction - Copart USA");
     //     });
     // });
+    
     // If you don’t want to use promises, you can use awaits.  
     // This is easier to understand than to use promise…. then(function()).
-    it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function() {
+    it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function(){
         var title = await driver.getTitle();
         return assert.include(title, "Auto Auction - Copart USA");
     });
