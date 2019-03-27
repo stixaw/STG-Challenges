@@ -41,16 +41,21 @@ describe("challenge1 suite", function(){
 
     // have to do find li we need for the console.log
     it("Should find the Most Popular Items", async function(){
-        var result = await driver.findElement(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
-        for(var i = 0; i < result.length; i++){
-            console.log(resut[i].innerText + " " + result[i].innerHTML.trim());
+
+        var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
+        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
+
+        for(var i = 0; i < 20; i++){
+            var text = await elements[i].getText();
+            var html = await elements[i].getAttribute("outerHTML");
+            console.log(text + " - " + html);
         }
-        done();
+
     });
 
     // it("Should assert Porsche is in list of results", async function() {
     //     await driver.wait(until.titleContains('Auto Auction - Copart USA'), 12000);
-    //     console.log(await driver.getTitle());
+    //     console.log(await driver.getTitle()); 
     //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
     //     // console.log(html);
     //     return assert.include(html, "Porsche");
