@@ -14,7 +14,6 @@ describe("challenge1 suite", function(){
        driver = new webdriver.Builder()
        .withCapabilities(webdriver.Capabilities.chrome())
        .build();
-       var By = driver.By;
 
     });
 

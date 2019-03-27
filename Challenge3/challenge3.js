@@ -5,8 +5,6 @@ var assert = require("chai").assert;
 // var until = webdriver.until;
 // var Key = webdriver.Key;
 
-
-
 describe("challenge1 suite", function(){
     this.timeout(20000);
     var driver;
@@ -23,8 +21,8 @@ describe("challenge1 suite", function(){
         return driver.quit();
     });
 
-    it("It should open the copart website", function() {
-        return driver.get("http://www.copart.com");
+    it("It should open the copart website", aync function() {
+        return await driver.get("http://www.copart.com");
     });
     
     // it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", function() {
