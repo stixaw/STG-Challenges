@@ -21,7 +21,7 @@ describe("challenge1 suite", function(){
         return driver.quit();
     });
 
-    it("It should open the copart website", aync function() {
+    it("It should open the copart website", async function() {
         return await driver.get("http://www.copart.com");
     });
     
@@ -39,20 +39,22 @@ describe("challenge1 suite", function(){
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // have to do find element
+    // have to do find li we need for the console.log
     it("Should find the Most Popular Items", async function(){
-        var element = await driver.findElement(By.className("col-lg-3 col-sm-3 col-md-3 col-xs-6 col-xs-ext-sm"));
-        return assert.equal
-        //return element.sendKeys("Exotic" + Key.ENTER);
+        var result = await driver.findElement(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
+        for(var i = 0; i < result.length; i++){
+            console.log(resut[i].innerText + " " + result[i].innerHTML.trim());
+        }
+        done();
     });
 
-    it("Should assert Porsche is in list of results", async function() {
-        await driver.wait(until.titleContains('Auto Auction - Copart USA'), 12000);
-        console.log(await driver.getTitle());
-        var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-        // console.log(html);
-        return assert.include(html, "Porsche");
-    });
+    // it("Should assert Porsche is in list of results", async function() {
+    //     await driver.wait(until.titleContains('Auto Auction - Copart USA'), 12000);
+    //     console.log(await driver.getTitle());
+    //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+    //     // console.log(html);
+    //     return assert.include(html, "Porsche");
+    // });
 
 
 });
