@@ -47,11 +47,12 @@ describe("challenge1 suite", function(){
 
         for(var i = 0; i < 20; i++){
             
-            var rootHtml = "https://www.copart.com"
+            //var rootHtml = "https://www.copart.com"
             var text = await elements[i].getText();
-            var html = await elements[i].getAttribute("outerHTML");
-            var htmlsub = html.substr(10,14)
-            console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+            var html = await elements[i].getAttribute("href");
+            //var htmlsub = html.substr(10,14)
+            // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+            console.log(text + " - " + html);
         }
 
     });
