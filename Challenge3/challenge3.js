@@ -46,9 +46,12 @@ describe("challenge1 suite", function(){
         // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
 
         for(var i = 0; i < 20; i++){
+            
+            var rootHtml = "https://www.copart.com"
             var text = await elements[i].getText();
             var html = await elements[i].getAttribute("outerHTML");
-            console.log(text + " - " + html);
+            var htmlsub = html.substr(10,14)
+            console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
         }
 
     });
