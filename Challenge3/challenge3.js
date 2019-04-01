@@ -6,7 +6,7 @@ var assert = require("chai").assert;
 // var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
-    this.timeout(20000);
+    this.timeout(34000);
     var driver;
 
     before(function () {
@@ -39,21 +39,43 @@ describe("challenge1 suite", function(){
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // have to do find li we need for the console.log
+    // have to do find li console log the element attribute using while loop
     it("Should find the Most Popular Items", async function(){
 
         var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
-        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
+        //this only gets the first 5 from the 20 not sure how to get all of them?
+        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li[@ng-repeat='popularSearch in popularSearches | limitTo: 5']"));
+
+        count = 0;
+
+        while(count < 20){
+            
+            //var rootHtml = "https://www.copart.com"
+            var text = await elements[count].getText();
+            var html = await elements[count].getAttribute("href");
+            //var htmlsub = html.substr(10,14)
+            // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+            console.log(text + " - " + html);
+            count ++;
+        }
+
+    });
+
+    // //for loop:
+    it("Should find the Most Popular Items", async function(){
+
+        var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
+        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li[@ng-repeat='popularSearch in popularSearches | limitTo: 5']"));
 
         for(var i = 0; i < 20; i++){
-            
+             
             //var rootHtml = "https://www.copart.com"
             var text = await elements[i].getText();
             var html = await elements[i].getAttribute("href");
             //var htmlsub = html.substr(10,14)
             // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
             console.log(text + " - " + html);
-        }
+        };
 
     });
 
