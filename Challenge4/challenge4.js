@@ -1,4 +1,7 @@
 require('chromedriver');
+const fibonacci = require('./fibonacci');
+const convertNumToString = require('./convertNumToString');
+
 const {Builder, By, until, Key} = require('selenium-webdriver');
 var assert = require("chai").assert;
 // var By = webdriver.By;
@@ -6,7 +9,7 @@ var assert = require("chai").assert;
 // var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
-    this.timeout(20000);
+    this.timeout(34000);
     var driver;
 
     before(function () {
@@ -39,21 +42,42 @@ describe("challenge1 suite", function(){
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // have to do find li we need for the console.log
+    // have to do find li console log the element attribute using while loop
     it("Should find the Most Popular Items", async function(){
 
-        var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
-        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li"));
+        var popular_array = await driver.findElements(By.xpath("//div[@ng-if='popularSearches']//ul/li/a"));
 
-        for(var i = 0; i < 20; i++){
+        count = 0;
+
+        while(count < popular_array.length){
             
             //var rootHtml = "https://www.copart.com"
-            var text = await elements[i].getText();
-            var html = await elements[i].getAttribute("href");
             //var htmlsub = html.substr(10,14)
             // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+            var text = await popular_array[count].getText();
+            var html = await popular_array[count].getAttribute("href");
             console.log(text + " - " + html);
+            count ++;
         }
+
+    });
+
+    //for loop:
+    it("loop through the Most Popular Items and print link and text", async function(){
+
+        var popular_array = await driver.findElements(By.xpath("//div[@id='tabTrending']//a"));
+        console.log(popular_array.length);
+
+        for(var i = 0; i < popular_array.length; i++){            
+            //var rootHtml = "https://www.copart.com"
+            //var htmlsub = html.substr(10,14)
+            // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+
+            var text = await popular_array[i].getText();
+            var html = await popular_array[i].getAttribute("href");
+
+            console.log(text + " - " + html);
+        };
 
     });
 

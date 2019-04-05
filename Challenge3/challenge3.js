@@ -42,38 +42,37 @@ describe("challenge1 suite", function(){
     // have to do find li console log the element attribute using while loop
     it("Should find the Most Popular Items", async function(){
 
-        var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
-        //this only gets the first 5 from the 20 not sure how to get all of them?
-        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li[@ng-repeat='popularSearch in popularSearches | limitTo: 5']"));
+        var popular_array = await driver.findElements(By.xpath("//div[@ng-if='popularSearches']//ul/li/a"));
 
         count = 0;
 
-        while(count < 20){
+        while(count < popular_array.length){
             
             //var rootHtml = "https://www.copart.com"
-            var text = await elements[count].getText();
-            var html = await elements[count].getAttribute("href");
             //var htmlsub = html.substr(10,14)
             // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+            var text = await popular_array[count].getText();
+            var html = await popular_array[count].getAttribute("href");
             console.log(text + " - " + html);
             count ++;
         }
 
     });
 
-    // //for loop:
-    it("Should find the Most Popular Items", async function(){
+    //for loop:
+    it("loop through the Most Popular Items and print link and text", async function(){
 
-        var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']//ul/li/a"));
-        // var elements = await driver.findElements(By.xpath("//*[@id='tabTrending']/div[1]/div[2]/div/ul/li[@ng-repeat='popularSearch in popularSearches | limitTo: 5']"));
+        var popular_array = await driver.findElements(By.xpath("//div[@id='tabTrending']//a"));
+        console.log(popular_array.length);
 
-        for(var i = 0; i < 20; i++){
-             
+        for(var i = 0; i < popular_array.length; i++){            
             //var rootHtml = "https://www.copart.com"
-            var text = await elements[i].getText();
-            var html = await elements[i].getAttribute("href");
             //var htmlsub = html.substr(10,14)
             // console.log(text + " - " + rootHtml + htmlsub + text.toLowerCase());
+
+            var text = await popular_array[i].getText();
+            var html = await popular_array[i].getAttribute("href");
+
             console.log(text + " - " + html);
         };
 
