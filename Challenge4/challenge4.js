@@ -1,4 +1,5 @@
 require('chromedriver');
+var converter = require('number-to-words');
 // var webdriver = require('selenium-webdriver');
 //var assert = require("chai").assert;
 const fib = require('./fibonacci');
@@ -34,12 +35,37 @@ describe("challenge1 suite", function(){
 
     // });
 
-    it("Different solution using an array and iteration", function(){
-        fib.fib_series(5);
+    // it("Different solution using an array and iteration", function(){
+    //     fib.fib_series(5);
+    // });
+
+    // it("getNum function tests should handle up to 999", function(){
+    //     console.log(numToString.getNum(1));
+    //     console.log(numToString.getNum(99));
+    //     console.log(numToString.getNum(999));
+        
+    // });
+
+    // it("numToStr function tests should handle 999+", function(){
+        // console.log(numToString.numToStr(1));
+        // console.log(numToString.numToStr(199900));
+        // console.log(numToString.numToStr(400500701));
+        // console.log(numToString.numToStr(23400500701));
+        
+    // });
+
+        it("Fibonacci series and words", function () {
+        console.log(fib.fibonacci(0) + "...." + numToString.numToStr(fib.fibonacci(0)));
+        console.log(fib.fibonacci(5) + "...." + numToString.numToStr(fib.fibonacci(5)));
+        console.log(fib.fibonacci(15) + "...." + numToString.numToStr(fib.fibonacci(15)));
+        console.log(fib.fibonacci(20) + "...." + numToString.numToStr(fib.fibonacci(20)));
+        console.log(fib.fibonacci(25) + "...." + numToString.numToStr(fib.fibonacci(25)));
+
     });
 
     it("challenge returns fib and string", function(){
-        console.log(numToString.numToStr(fib.fibonacci(5)));
+        fib.fib_series(10);
+
     });
-    
+
 });

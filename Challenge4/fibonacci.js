@@ -2,6 +2,7 @@ module.exports = {
     fibonacci: fibonacci,
     fib_series: fib_series
  };
+ const numStr= require('./convertNumToString');
 
 function fibonacci(number){
 
@@ -31,7 +32,8 @@ function fib_series(n){
     //return arr[n]
     //return arr
     for (i = 0; i < arr.length; i++){
-      console.log(arr[i]);
+      console.log(arr[i]+ "..." + (numStr.numToStr(arr[i]))); 
+
     }
   }
 }
