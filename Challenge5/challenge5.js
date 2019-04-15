@@ -36,27 +36,27 @@ describe("challenge1 suite", function(){
     // find search and type porsche
     it("Should search on copart for porsche", async function(){
         var element = await driver.findElement(By.id("input-search"));
-        return element.sendKeys("porsche" + Key.ENTER);
+        element.sendKeys("porsche" + Key.ENTER);
+        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display: block");
+        await driver.wait(until.elementTextContains(displayProp, 'none'));
     });
 
     // get the results for porsche
     it("Should assert Porsche is in list of results", async function() {
-        await driver.wait(until.titleContains('Porsche'), 12000);
-        console.log(await driver.getTitle()); 
+        await driver.wait(until.titleContains('porsche For Auction at Copart'), 12000);
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-        // console.log(html);
+        // console.log(html)
         return assert.include(html, "Porsche");
     });
 
     //change the  drop down for “Show Entries” to 100 from 20. 
     it("Should assert show entries is set to 100", async function() {
-        var ddClick= await driver.findElement(By.xpath('//*[@id="serverSideDataTable_length"]/label/select/a'), 12000);
-        ddClick.getAttribute('innerHTML').;
-        await driver.
-        console.log(await driver.getTitle()); 
-        var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-        // console.log(html);
-        return assert.include(html, "Porsche");
+        var element = await driver.findElement(By.xpath("//*[@id='serverSideDataTable_length']/label/select/option[3]"), 12000);    
+        // await driver.
+        // console.log(await driver.getTitle()); 
+        // var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+        // // console.log(html);
+        // return assert.include(html, "Porsche");
     });
 
 
