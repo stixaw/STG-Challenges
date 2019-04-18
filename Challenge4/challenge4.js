@@ -26,6 +26,25 @@ describe("challenge1 suite", function(){
 //         return driver.quit();
 //     });
 
+
+
+        it("Fibonacci series and words", function () {
+        console.log(fib.fibonacci(0) + "...." + numToString.numToStr(fib.fibonacci(0)));
+        console.log(fib.fibonacci(5) + "...." + numToString.numToStr(fib.fibonacci(5)));
+        console.log(fib.fibonacci(15) + "...." + numToString.numToStr(fib.fibonacci(15)));
+        console.log(fib.fibonacci(20) + "...." + numToString.numToStr(fib.fibonacci(20)));
+        console.log(fib.fibonacci(25) + "...." + numToString.numToStr(fib.fibonacci(25)));
+        console.log(fib.fibonacci(35) + "...." + numToString.numToStr(fib.fibonacci(35)));
+
+    });
+
+    it("challenge returns fib and string", function(){
+        fib.fib_series(30);
+
+    });
+
+});
+
     // it("Fibonacci series", function () {
     //     console.log(fib.fibonacci(0));
     //     console.log(fib.fibonacci(1));
@@ -53,19 +72,3 @@ describe("challenge1 suite", function(){
         // console.log(numToString.numToStr(23400500701));
         
     // });
-
-        it("Fibonacci series and words", function () {
-        console.log(fib.fibonacci(0) + "...." + numToString.numToStr(fib.fibonacci(0)));
-        console.log(fib.fibonacci(5) + "...." + numToString.numToStr(fib.fibonacci(5)));
-        console.log(fib.fibonacci(15) + "...." + numToString.numToStr(fib.fibonacci(15)));
-        console.log(fib.fibonacci(20) + "...." + numToString.numToStr(fib.fibonacci(20)));
-        console.log(fib.fibonacci(25) + "...." + numToString.numToStr(fib.fibonacci(25)));
-
-    });
-
-    it("challenge returns fib and string", function(){
-        fib.fib_series(10);
-
-    });
-
-});

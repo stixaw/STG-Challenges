@@ -1,7 +1,7 @@
 module.exports = {
     numToStr: numToString,
     getNum: getNum
-}
+};
 
 function numToString(number){
     var stringNum = "";
@@ -90,7 +90,7 @@ function strTrim(s_number, num1, num2, num3){
         s_number = s_number.slice(3);
     }
     if(s_number.length == num2){
-        s_number = s_number.slice(2)
+        s_number = s_number.slice(2);
     }
     if (s_number.length == num3){
         s_number = s_number.slice(1);
@@ -105,13 +105,13 @@ function getNum(number){
     var s_number = number +"";
     // console.log("getNum number: " + number);
 
-    let digits= ['', 'one', 'two', 'three', 'four', 'five', 'six','seven','eight', 'nine','ten','eleven','twelve', 'thirteen', 'fourteen','fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
-    let tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+    let digits= ['', 'one', 'two', 'three', 'four', 'five', 'six','seven','eight', 'nine','ten','eleven','twelve', 'thirteen', 'fourteen','fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+    let tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
     
     
     if (s_number.length < 3 && number < 20){
         //console.log("Log 1: length: " + s_number.length, number)
-        threeDigitNum = digits[number]
+        threeDigitNum = digits[number];
     }
     else{
         //get hundred value

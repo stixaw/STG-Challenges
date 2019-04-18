@@ -37,7 +37,7 @@ describe("challenge1 suite", function(){
     it("Should search on copart for porsche", async function(){
         var element = await driver.findElement(By.id("input-search"));
         element.sendKeys("porsche" + Key.ENTER);
-        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display: block");
+        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
         await driver.wait(until.elementTextContains(displayProp, 'none'));
     });
 
