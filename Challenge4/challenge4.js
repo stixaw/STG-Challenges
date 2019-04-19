@@ -1,11 +1,11 @@
 require('chromedriver');
+var webdriver = require('selenium-webdriver');
+var assert = require("chai").assert;
+
 var converter = require('number-to-words');
-// var webdriver = require('selenium-webdriver');
-//var assert = require("chai").assert;
 const fib = require('./fibonacci');
 const numToString = require('./convertNumToString');
 
-//const {Builder, By, until, Key} = require('selenium-webdriver');
 // var By = webdriver.By;
 // var until = webdriver.until;
 // var Key = webdriver.Key;
@@ -16,10 +16,10 @@ describe("challenge1 suite", function(){
 
 //     before(function () {
 //     // initializing chrome driver
-//     //    driver = new webdriver.Builder()
-//     //    .withCapabilities(webdriver.Capabilities.chrome())
-//     //    .build();
-//         driver = new Builder().forBrowser('chrome').build();
+    //    driver = new webdriver.Builder()
+    //    .withCapabilities(webdriver.Capabilities.chrome())
+    //    .build();
+
 //     });
 
 //     after(function () {
