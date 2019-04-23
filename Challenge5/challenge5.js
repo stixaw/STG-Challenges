@@ -63,16 +63,21 @@ describe("challenge1 suite", function(){
     var sorted_array = [];
     it ("Should get all data in table", async function(){
         //By.xpath(//*[@data-uname=“lotsearchLotmodel”])
-        var model_array = await driver.findElement(By.xpath('//*[@data-uname=“lotsearchLotmodel”]'));
+        var model_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotmodel”]'));
         console.log(model_array.length);
         for(var i; i < model_array.length; i++){
             var model = model_array[i].toText();
             sorted_array.add(model);
         }
     })
-
+    let sortedDamage_arr = [];
     it("Should print out damage types", async function(){
-        //By.xpath('')
+        //By.xpath(//*[@data-uname=“lotsearchLotdamagedescription”])
+        var damage_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotdamagedescription”]'));
+        for(var j; j < damage_array.length; j++){
+            var damageType = damage_array[j].toText();
+            sortedDamage_arr.add(damageType);
+        }
     });
 
 });
