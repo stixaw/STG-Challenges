@@ -1,10 +1,7 @@
 require('chromedriver');
-var webDriver = require('selenium-webdriver');
-// const {Builder, By, until, Key} = require('selenium-webdriver');
+const {Builder, By, until, Key} = require('selenium-webdriver');
 var assert = require("chai").assert;
-var By = webdriver.By;
-var until = webdriver.until;
-var Key = webdriver.Key;
+// clear
 
 describe("challenge1 suite", function(){
     this.timeout(34000);
@@ -12,10 +9,10 @@ describe("challenge1 suite", function(){
 
     before(function () {
         //initializing chrome driver
-       driver = new webdriver.Builder()
-       .withCapabilities(webdriver.Capabilities.chrome())
-       .build();
-        // driver = new Builder().forBrowser('chrome').build();
+    //    driver = new webdriver.Builder()
+    //    .withCapabilities(webdriver.Capabilities.chrome())
+    //    .build();
+        driver = new Builder().forBrowser('chrome').build();
         driver.manage().window().maximize();
     });
 
@@ -34,17 +31,19 @@ describe("challenge1 suite", function(){
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // find search and type porsche
-    it("Should search on copart for porsche", async function(){
+    // find search and type exotic
+    it("Should search on copart for exotic", async function(){
         var element = await driver.findElement(By.id("input-search"));
-        element.sendKeys("porsche" + Key.ENTER);
+        element.sendKeys("exotic" + Key.ENTER);
         var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
+        console.log(displayProp);
         await driver.wait(until.elementTextContains(displayProp, 'none'));
+        // return assert.include(displayProp, "none");
     });
 
-    // get the results for porsche
+    // get the results for exotic
     it("Should assert Porsche is in list of results", async function() {
-        await driver.wait(until.titleContains('porsche For Auction at Copart'), 12000);
+        await driver.wait(until.titleContains('exotic For Auction at Copart'), 12000);
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html)
         return assert.include(html, "Porsche");
@@ -57,32 +56,43 @@ describe("challenge1 suite", function(){
         await element.sendKeys("100");
         element.sendKeys("Enter");
         element.click();
-        return driver.wait(until.elementIsNotVisible(driver.findElement(By.id('serverSideDatatTable_processsing', 10000))));
+        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
+        await driver.wait(until.elementTextContains(displayProp, 'none'));
+        // return assert.include(displayProp, "none");
 
     });
-    var sorted_array = [];
-    it ("Should get all data in table", async function(){
-        //By.xpath(//*[@data-uname=“lotsearchLotmodel”])
-        //By.Css('#serverSideDataTable span[data-uname="lotsearchLotmodel"]')
-        var model_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotmodel”]'));
-        console.log(model_array.length);
-        for(var i; i < model_array.length; i++){
-            var model = model_array[i].toText();
-            console.log(model);
-            sorted_array.add(model);
-        }
-    })
-    let sortedDamage_arr = [];
-    it("Should print out damage types", async function(){
-        //By.xpath(//*[@data-uname=“lotsearchLotdamagedescription”])
-        //By css('#serverSideDataTable span[data-uname="lotsearchLotdamagedescription"]')
-        var damage_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotdamagedescription”]'));
-        for(var j; j < damage_array.length; j++){
-            var damageType = damage_array[j].toText();
-            console.log(damageType);
-            sortedDamage_arr.add(damageType);
-        }
-    });
+    
+    // var sorted_array = [];
+    // it ("Should get all data in table", async function(){
+    //     //By.xpath(//*[@data-uname=“lotsearchLotmodel”])
+    //     //By.Css('#serverSideDataTable span[data-uname="lotsearchLotmodel"]')
+    //     var model_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotmodel”]'));
+    //     console.log(model_array.length);
+    //     for(var i; i < model_array.length; i++){
+    //         var model = model_array[i].toText();
+    //         console.log(model);
+    //         sorted_array.add(model);
+    //     }
+    // })
+
+    // var models_array = [];
+    // var array_elements = await driver.findElement("elements");
+    // for(var i=0; i<array_elements.length; i++){
+    //     console.log(await array_elements[i].getText());
+    //     models_array.push(await array_elements[i].getText());
+    // }
+
+    // let sortedDamage_arr = [];
+    // it("Should print out damage types", async function(){
+    //     //By.xpath(//*[@data-uname=“lotsearchLotdamagedescription”])
+    //     //By css('#serverSideDataTable span[data-uname="lotsearchLotdamagedescription"]')
+    //     var damage_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotdamagedescription”]'));
+    //     for(var j; j < damage_array.length; j++){
+    //         var damageType = damage_array[j].toText();
+    //         console.log(damageType);
+    //         sortedDamage_arr.add(damageType);
+    //     }
+    // });
 
 });
 
