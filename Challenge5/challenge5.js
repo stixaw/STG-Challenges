@@ -24,29 +24,28 @@ describe("challenge1 suite", function(){
         return await driver.get("http://www.copart.com");
     });
     
-    // If you don’t want to use promises, you can use awaits.  
-    // This is easier to understand than to use promise…. then(function()).
     it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function(){
         var title = await driver.getTitle();
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // find search and type exotic
+    // find search and type Porsche
     it("Should search on copart for exotic", async function(){
         var element = await driver.findElement(By.id("input-search"));
-        element.sendKeys("exotic" + Key.ENTER);
-        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
-        console.log(displayProp);
-        await driver.wait(until.elementTextContains(displayProp, 'none'));
-        // return assert.include(displayProp, "none");
+        element.sendKeys("Exotic" + Key.ENTER);
+        await driver.wait(until.titleContains('Exotic'), 26000) 
+
     });
 
-    // get the results for exotic
-    it("Should assert Porsche is in list of results", async function() {
-        await driver.wait(until.titleContains('exotic For Auction at Copart'), 12000);
-        var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-        // console.log(html)
-        return assert.include(html, "Porsche");
+    it("Should search results for Porsche", async function(){
+        var element = await driver.findElement(By.xpath('//*[@id="serverSideDataTable_filter"]/label/input'));
+        await element.sendKeys("Porsche");
+        element.sendKeys(Key.ENTER);
+
+        await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody'))))
+        var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
+        return assert.include(html, "PORSCHE");
+
     });
 
     //change the  drop down for “Show Entries” to 100 from 20. 
@@ -56,45 +55,89 @@ describe("challenge1 suite", function(){
         await element.sendKeys("100");
         element.sendKeys("Enter");
         element.click();
-        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
-        await driver.wait(until.elementTextContains(displayProp, 'none'));
-        // return assert.include(displayProp, "none");
+
+        // var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
+        // await driver.wait(until.elementTextContains(displayProp, 'none'));
+        return driver.wait(until.elementIsNotVisible(driver.findElement(By.id('serverSideDataTable_processing',10000))));
 
     });
     
-    // var sorted_array = [];
-    // it ("Should get all data in table", async function(){
-    //     //By.xpath(//*[@data-uname=“lotsearchLotmodel”])
-    //     //By.Css('#serverSideDataTable span[data-uname="lotsearchLotmodel"]')
-    //     var model_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotmodel”]'));
-    //     console.log(model_array.length);
-    //     for(var i; i < model_array.length; i++){
-    //         var model = model_array[i].toText();
-    //         console.log(model);
-    //         sorted_array.add(model);
-    //     }
-    // })
+    function sortfunction(a, b){
+        return (a - b) 
+    }
 
-    // var models_array = [];
-    // var array_elements = await driver.findElement("elements");
-    // for(var i=0; i<array_elements.length; i++){
-    //     console.log(await array_elements[i].getText());
-    //     models_array.push(await array_elements[i].getText());
-    // }
+    function addPairValue(item, dict){
+        if (item in dict){
+            dict[item] += 1;
+        }
+        else{
+            dict[item] = 1;
+        }
+    }
 
-    // let sortedDamage_arr = [];
-    // it("Should print out damage types", async function(){
-    //     //By.xpath(//*[@data-uname=“lotsearchLotdamagedescription”])
-    //     //By css('#serverSideDataTable span[data-uname="lotsearchLotdamagedescription"]')
-    //     var damage_array = await driver.findElements(By.xpath('//*[@data-uname=“lotsearchLotdamagedescription”]'));
-    //     for(var j; j < damage_array.length; j++){
-    //         var damageType = damage_array[j].toText();
-    //         console.log(damageType);
-    //         sortedDamage_arr.add(damageType);
-    //     }
-    // });
+    // get the results for exotic
+
+    it("Should get all data from the table", async function() {
+        var tableData_array = await driver.findElements(By.xpath('//*[@data-uname="lotsearchLotmodel"]'));
+        var sorted_Models = tableData_array.sort(sortfunction);
+        var model_dict = {};
+
+        for(var i = 0; i < sorted_Models.length-1; i++){
+            var model = await sorted_Models[i].getText();
+            if (model in model_dict){
+                model_dict[model] += 1;
+            }
+            else{
+                model_dict[model] = 1;
+            }
+        }
+
+        console.log('***model: count***');
+        for(var key in model_dict){
+            var num = model_dict[key];
+            console.log(await key, num);
+        }
+
+    });
+
+    it("Should print out damage types and count using switch statement", async function() {
+        var tableData_array = await driver.findElements(By.xpath('//*[@data-uname="lotsearchLotdamagedescription"]'));
+        var damage_dict = {};
+
+        for(var i = 0; i < tableData_array.length-1; i++){
+            var damageType = await tableData_array[i].getText();
+            switch(damageType){
+                case 'REAR END':
+                    addPairValue(damageType, damage_dict);
+                    break;
+                case 'FRONT END':
+                    addPairValue(damageType, damage_dict);
+                    break;
+                case 'MINOR DENT/SCRATCHES':
+                    addPairValue(damageType, damage_dict);
+                    break;
+                case 'UNDERCARRIAGE':
+                    addPairValue(damageType, damage_dict);
+                    break;
+                default:
+                    addPairValue('MISC', damage_dict);
+                    break;
+            }
+        }
+        console.log('***damage: count***');
+        for(var key in damage_dict){
+            var num = damage_dict[key];
+            console.log(key, num);
+        }
+
+    });
 
 });
+
+//displayProp approach:
+// var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
+// console.log(displayProp);
+// await driver.wait(until.elementTextContains(displayProp, 'none'));
 
 //challenge 3:
     

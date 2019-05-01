@@ -40,7 +40,7 @@ describe("challenge1 suite", function(){
     });
 
     // have to do find element
-    it("Should search on copart for porschel", async function(){
+    it("Should search on copart for porsche", async function(){
         var element = await driver.findElement(By.id("input-search"));
         return element.sendKeys("Exotic" + Key.ENTER);
     });
