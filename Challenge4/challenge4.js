@@ -1,34 +1,15 @@
 require('chromedriver');
-var webdriver = require('selenium-webdriver');
-var assert = require("chai").assert;
+var webdriver = require('../node_modules/selenium-webdriver');
+var assert = require('../node_modules/chai').assert;
 
-var converter = require('number-to-words');
 const fib = require('./fibonacci');
 const numToString = require('./convertNumToString');
-
-// var By = webdriver.By;
-// var until = webdriver.until;
-// var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
     this.timeout(34000);
     var driver;
 
-//     before(function () {
-//     // initializing chrome driver
-    //    driver = new webdriver.Builder()
-    //    .withCapabilities(webdriver.Capabilities.chrome())
-    //    .build();
-
-//     });
-
-//     after(function () {
-//         return driver.quit();
-//     });
-
-
-
-        it("Fibonacci series and words", function () {
+    it("Fibonacci series and words", function () {
         console.log(fib.fibonacci(0) + "...." + numToString.numToStr(fib.fibonacci(0)));
         console.log(fib.fibonacci(5) + "...." + numToString.numToStr(fib.fibonacci(5)));
         console.log(fib.fibonacci(15) + "...." + numToString.numToStr(fib.fibonacci(15)));
