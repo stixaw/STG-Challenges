@@ -1,7 +1,7 @@
 require('chromedriver');
 var webdriver= require('../nod_modules/selenium-webdriver');
 //const {Builder, By, until, Key} = require('selenium-webdriver');
-var assert = require("chai").assert;
+var assert = require('../node_modules/chai').assert;
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
@@ -58,7 +58,7 @@ describe("challenge1 suite", function(){
             //click model
             var modelElement = await driver.findElement(By.xpath('/*[@data-uname="ModelFilter"]'));
             modelElement.click();
-            driver.wait(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
+            driver.wait(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]')));
             
         }
         catch (error) {
