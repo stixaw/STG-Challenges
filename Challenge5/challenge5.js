@@ -1,6 +1,7 @@
 require('chromedriver');
-const {Builder, By, until, Key} = require('selenium-webdriver');
-var assert = require("chai").assert;
+const {Builder, By, until, Key} = require('../node_modules/selenium-webdriver');
+var assert = require('../node_modules/chai').assert;
+const webdriver = require('../common/driver');
 // clear
 
 describe("challenge1 suite", function(){
@@ -9,9 +10,6 @@ describe("challenge1 suite", function(){
 
     before(function () {
         //initializing chrome driver
-    //    driver = new webdriver.Builder()
-    //    .withCapabilities(webdriver.Capabilities.chrome())
-    //    .build();
         driver = new Builder()
         .forBrowser('chrome')
         .build();

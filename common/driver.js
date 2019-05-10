@@ -22,7 +22,7 @@ function getDriver (browser, rm, mobileType){
 
     if(browser.toLowerCase() == 'vhtomr' && mobileType != null ){
         var caps = {
-            browserName = 'chrome',
+            browserName: 'chrome',
             chromeOptions:{
                 mobileEmulation: {
                     deviceName: mobileType
