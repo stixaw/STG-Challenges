@@ -13,11 +13,12 @@ describe("challenge1 suite", function(){
 
     before(function () {
         //initializing chrome driver
-       driver = new webdriver.Builder()
-       .withCapabilities(webdriver.Capabilities.chrome())
-       .build();
-        // driver = new Builder().forBrowser('chrome').build();
-        driver.manage().window().maximize();
+    //    driver = new webdriver.Builder()
+    //    .withCapabilities(webdriver.Capabilities.chrome())
+    //    .build();
+    //     // driver = new Builder().forBrowser('chrome').build();
+    //     driver.manage().window().maximize();
+        driver = driverManager.getDriver('chrome');
     });
 
     after(function () {
@@ -87,7 +88,6 @@ describe("challenge1 suite", function(){
 // it("Should print out damage types", async function(){
 //     //By.xpath('')
 // })
-
 
 //from challenge 3
     // // have to do find li console log the element attribute using while loop
