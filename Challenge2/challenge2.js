@@ -6,7 +6,7 @@ var assert = require('../node_modules/chai').assert;
 // var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
-    this.timeout(20000);
+    this.timeout(34000);
     var driver;
 
     before(function () {
@@ -46,7 +46,7 @@ describe("challenge1 suite", function(){
     });
 
     it("Should assert Porsche is in list of results", async function() {
-        await driver.wait(until.titleContains('Exotic For Auction at Copart'), 12000);
+        await driver.wait(until.titleContains('Exotic For Auction at Copart'), 20000);
         console.log(await driver.getTitle());
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html);
