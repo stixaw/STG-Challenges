@@ -1,6 +1,6 @@
 require('chromedriver');
-var webdriver = require('selenium-webdriver');
-var assert = require("chai").assert;
+var webdriver = require('../node_modules/selenium-webdriver');
+var assert = require('../node_modules/chai').assert;
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;

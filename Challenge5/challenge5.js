@@ -12,7 +12,9 @@ describe("challenge1 suite", function(){
     //    driver = new webdriver.Builder()
     //    .withCapabilities(webdriver.Capabilities.chrome())
     //    .build();
-        driver = new Builder().forBrowser('chrome').build();
+        driver = new Builder()
+        .forBrowser('chrome')
+        .build();
         driver.manage().window().maximize();
     });
 

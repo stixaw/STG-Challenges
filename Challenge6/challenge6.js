@@ -1,10 +1,11 @@
 require('chromedriver');
-var webdriver= require('selenium-webdriver');
+var webdriver= require('../nod_modules/selenium-webdriver');
 //const {Builder, By, until, Key} = require('selenium-webdriver');
 var assert = require("chai").assert;
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
+const driverManager = require('../common/driver')
 
 describe("challenge1 suite", function(){
     this.timeout(34000);

@@ -1,6 +1,6 @@
 require('chromedriver');
-const {Builder, By, until, Key} = require('selenium-webdriver');
-var assert = require("chai").assert;
+const {Builder, By, until, Key} = require('../node_modules/selenium-webdriver');
+var assert = require('../node_modules/chai').assert;
 // var By = webdriver.By;
 // var until = webdriver.until;
 // var Key = webdriver.Key;
