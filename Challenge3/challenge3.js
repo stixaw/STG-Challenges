@@ -1,20 +1,22 @@
 require('chromedriver');
-const {Builder, By, until, Key} = require('../node_modules/selenium-webdriver');
+var webdriver = require('../node_modules/selenium-webdriver');
 var assert = require('../node_modules/chai').assert;
-// var By = webdriver.By;
-// var until = webdriver.until;
-// var Key = webdriver.Key;
+const driverManager = require('../common/driver')
+var By = webdriver.By;
+var until = webdriver.until;
+var Key = webdriver.Key;
 
 describe("challenge1 suite", function(){
     this.timeout(34000);
     var driver;
 
-    before(function () {
+    before(async function () {
     // initializing chrome driver
     //    driver = new webdriver.Builder()
     //    .withCapabilities(webdriver.Capabilities.chrome())
     //    .build();
-        driver = new Builder().forBrowser('chrome').build();
+        driver = await driverManager.getDriver('chrome');
+        return driver;
     });
 
     after(function () {

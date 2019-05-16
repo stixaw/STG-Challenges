@@ -1,4 +1,7 @@
 var fs = require('fs')
+module.exports = {
+    takeScreenshot: takeScreenshot
+}
 
 function takeScreenshot(driver, name){
     driver.takeScreenshot()

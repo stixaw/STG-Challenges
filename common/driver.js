@@ -1,16 +1,25 @@
 require('chromedriver');
 var webDriver = require('../node_modules/selenium-webdriver');
-//const {Builder, By, Key, until} = require('selenium-webdriver');
+//const {Builder, By, until, Key} = require('../node_modules/selenium-webdriver');
 
 module.exports = {
-    getDriver: getDriver
+    getDriver: getDriver,
+    getDriver1: getDriver1
 }
 
-function getDriver (browser, rm, mobileType){
-    var builder = new webDriver.Builder();
-    builder.forBrowser('chrome');
-    builder.build();
+function getDriver1(browserType){
+    driver = new webDriver.Builder().forBrowser(browserType.toLowerCase()).build();
+    driver.manage().window().maximize();
 
+    return driver;
+
+}
+
+
+function getDriver(browser, rm, mobileType){  
+    var builder = new webDriver.Builder();
+
+    //remote server
     if(rm != null){
         builder.usingServer(rm);
     }
@@ -20,9 +29,9 @@ function getDriver (browser, rm, mobileType){
     }
     builder.forBrowser(browser.toLowerCase());
 
-    if(browser.toLowerCase() == 'vhtomr' && mobileType != null ){
+    if(mobileType != null ){
         var caps = {
-            browserName: 'chrome',
+            browserName: browser,
             chromeOptions:{
                 mobileEmulation: {
                     deviceName: mobileType
@@ -35,7 +44,8 @@ function getDriver (browser, rm, mobileType){
     driver = builder.build();
 
     if(mobileType == null){
-        deriver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
     return driver;
+
 };

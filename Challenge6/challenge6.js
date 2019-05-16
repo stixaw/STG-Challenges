@@ -1,24 +1,19 @@
 require('chromedriver');
-var webdriver= require('../nod_modules/selenium-webdriver');
-//const {Builder, By, until, Key} = require('selenium-webdriver');
+var webdriver = require('../node_modules/selenium-webdriver');
 var assert = require('../node_modules/chai').assert;
+const driverManager = require('../common/driver');
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
-const driverManager = require('../common/driver')
 
 describe("challenge1 suite", function(){
     this.timeout(34000);
     var driver;
 
-    before(function () {
+    before(async function () {
         //initializing chrome driver
-    //    driver = new webdriver.Builder()
-    //    .withCapabilities(webdriver.Capabilities.chrome())
-    //    .build();
-    //     // driver = new Builder().forBrowser('chrome').build();
-    //     driver.manage().window().maximize();
-        driver = driverManager.getDriver('chrome');
+        driver = await driverManager.getDriver('chrome');
+        return driver;
     });
 
     after(function () {
@@ -46,13 +41,12 @@ describe("challenge1 suite", function(){
 
     // get the results for Nissan
     it("Should assert Nissan is in list of results", async function() {
-        await driver.wait(until.titleContains('porsche For Auction at Copart'), 12000);
+        await driver.wait(until.titleContains('Nissan'), 12000);
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html)
         return assert.include(html, "Nissan");
     });
 
-    // });
         // find model and click it and do stuff till it blows up
     it('Using Filter options find model, search for Skyline', async function(){
         try {
