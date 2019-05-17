@@ -43,7 +43,7 @@ describe("challenge1 suite", function(){
         await element.sendKeys("Porsche");
         element.sendKeys(Key.ENTER);
 
-        await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody'))))
+        await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody', 10000))))
         var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
         return assert.include(html, "PORSCHE");
 

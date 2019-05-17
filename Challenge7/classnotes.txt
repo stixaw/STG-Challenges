@@ -1,0 +1,51 @@
+var arr3 = ['cat', 'rat', 'bat'];
+arr3.push('mat'); => = ['cat', 'rat', 'bat', 'mat'];
+
+var array = []
+array.push('Honda'); => ['Honda']
+array.push('Toyota'); => ['Honda', 'Toyota']
+array.push('Nissan'); => ['Honda', 'Toyota', 'Nissan']
+
+
+array.pop(); => ['Honda', 'Toyota']
+array.pop(); => ['Honda']
+array.pop(); => []
+
+var one = array.pop() => ['Honda', 'Toyota']
+console.log(one); => Nissan
+
+pop = LIFO
+
+
+var array =[]
+var array_of_arrays =[]
+
+array.push('Honda');
+array.push('https://www.honda.com');
+
+array => ['Honda', 'https://www.honda.com']
+
+array_of_arrays.push(array) => ["['Honda', 'https://www.honda.com']",]
+
+var key_Value_Pair = array_of_arrays.pop() => ['Honda', 'https://www.honda.com']
+
+NavigateTo.GotoURL(value_array[1], value_array[0]);
+
+function NavigateTo(url, text, driver){
+    //driver.get("http://www.google.com")
+    driver.get(url)
+    wait for page to display
+    get html source
+    var bool = await assert.html.includes(html,text)
+
+    return bool
+}
+
+if(!(NavigateTo(url, text, driver)){
+    console.log('FAILED!!: ' + text + ' is not on the page ' + URL)
+}
+
+https://www.copart.com/lotSearchResults/?free=true&query=nissan
+
+https://www.copart.com/?Search=Nissan&model=skyline&startYear=1980&endYear=2000
+

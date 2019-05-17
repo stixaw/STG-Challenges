@@ -36,21 +36,17 @@ describe("challenge1 suite", function(){
         var element = await driver.findElement(By.id("input-search"));
         element.sendKeys("nissan");
         var click = await driver.findElement(By.xpath('//*[@ng-click="search()"]'));
-        await click.click();
-        // var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
-        // await driver.wait(until.elementTextContains(displayProp, 'none'));
-        await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody', 10000))))
-        var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
-        return assert.include(html, "NISSAN");;
-
+        click.click();
+        var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
+        await driver.wait(until.elementTextContains(displayProp, 'none'));
     });
 
     // get the results for Nissan
     it("Should assert Nissan is in list of results", async function() {
-        await driver.wait(until.titleContains('nissan'), 20000);
+        await driver.wait(until.titleContains('Nissan'), 12000);
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html)
-        return assert.include(html, "NISSAN");
+        return assert.include(html, "Nissan");
     });
 
         // find model and click it and do stuff till it blows up
@@ -59,12 +55,8 @@ describe("challenge1 suite", function(){
             //click model
             var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]/i'));
             modelElement.click();
-            driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))));
-            var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
-            searchInput.sendKeys("skyline");
-            //xpath of search input //*[@id="collapseinside4"]/form/div/input
-            //css #collapseinside4 > form > div > input
-
+            driver.wait(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]')));
+            
         }
         catch (error) {
             
