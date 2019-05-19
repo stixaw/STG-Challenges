@@ -2,6 +2,7 @@ require('chromedriver');
 var webdriver = require('../node_modules/selenium-webdriver');
 var assert = require('../node_modules/chai').assert;
 const driverManager = require('../common/driver');
+const catchScreen = require('../common/screenshot');
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
@@ -31,7 +32,7 @@ describe("challenge1 suite", function(){
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
-    // find search and type Nissan
+    // search for Nissan
     it("Should search on copart for Nissan", async function(){
         var element = await driver.findElement(By.id("input-search"));
         element.sendKeys("nissan");
@@ -39,38 +40,47 @@ describe("challenge1 suite", function(){
         await click.click();
         // var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
         // await driver.wait(until.elementTextContains(displayProp, 'none'));
-        await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody', 10000))))
+        driver.wait(14000);
+        await driver.wait(until.elementIsVisible(driver.findElement(By.id('serverSideDataTable > tbody', 10000))))
         var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
         return assert.include(html, "NISSAN");;
 
     });
 
     // get the results for Nissan
-    it("Should assert Nissan is in list of results", async function() {
-        await driver.wait(until.titleContains('nissan'), 20000);
-        var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-        // console.log(html)
-        return assert.include(html, "NISSAN");
-    });
+    // it("Should assert Nissan is in list of results", async function() {
+    //     await driver.wait(until.titleContains('nissan'), 20000);
+    //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+    //     // console.log(html)
+    //     return assert.include(html, "NISSAN");
+    // });
 
         // find model and click it and do stuff till it blows up
     it('Using Filter options find model, search for Skyline', async function(){
+
+        var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]/i'));
+        modelElement.click();
+        
         try {
-            //click model
-            var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]/i'));
-            modelElement.click();
+            //search for skyline model
             driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))));
-            var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
-            searchInput.sendKeys("skyline");
             //xpath of search input //*[@id="collapseinside4"]/form/div/input
             //css #collapseinside4 > form > div > input
+            var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
+            searchInput.sendKeys("skyline");
+            driver.wait(until.elementIsVisible(driver.findElement(By.css('#collapseinside4 > ul'))));
+            
+            var applyFilter = await driver.findElement(By.css('#collapseinside4 > ul > li > div > label > abbr'));
+            console.log(await applyFilter.getText());
+            applyFilter.click();
 
         }
         catch (error) {
-            
+            var err = "skylineNotFound!";
+            console.log(err);
         }
         finally{
-
+            catchScreen.takeScreenshot(driver, 'skyline_screenshot');
         } 
     })
 });
