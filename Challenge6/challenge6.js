@@ -2,6 +2,7 @@ require('chromedriver');
 var webdriver = require('../node_modules/selenium-webdriver');
 var assert = require('../node_modules/chai').assert;
 const driverManager = require('../common/driver');
+const screenShot = require('../common/screenshot')
 var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
@@ -62,16 +63,10 @@ describe("challenge1 suite", function(){
             driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))));
             var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
             searchInput.sendKeys("skyline");
-            //xpath of search input //*[@id="collapseinside4"]/form/div/input
-            //css #collapseinside4 > form > div > input
-
         }
         catch (error) {
-            
+            takeScreenshot(driver, 'skyLine_error')
         }
-        finally{
-
-        } 
     })
 });
 
