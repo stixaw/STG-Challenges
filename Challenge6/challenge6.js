@@ -40,25 +40,22 @@ describe("challenge1 suite", function(){
         await click.click();
         // var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
         // await driver.wait(until.elementTextContains(displayProp, 'none'));
-        driver.wait(14000);
-        await driver.wait(until.elementIsVisible(driver.findElement(By.id('serverSideDataTable > tbody', 10000))))
+        await driver.wait(until.elementIsVisible(driver.findElement(By.id('serverSideDataTable > tbody', 24000))))
         var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
         return assert.include(html, "NISSAN");;
 
     });
 
-    // get the results for Nissan
-    // it("Should assert Nissan is in list of results", async function() {
-    //     await driver.wait(until.titleContains('nissan'), 20000);
-    //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-    //     // console.log(html)
-    //     return assert.include(html, "NISSAN");
-    // });
+    it("Should assert Nissan is in list of results", async function() {
+        await driver.wait(until.titleContains('nissan'), 20000);
+        var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+        // console.log(html)
+        return assert.include(html, "NISSAN");
+    });
 
         // find model and click it and do stuff till it blows up
     it('Using Filter options find model, search for Skyline', async function(){
-
-        var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]/i'));
+        var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'));
         modelElement.click();
         
         try {
@@ -68,20 +65,17 @@ describe("challenge1 suite", function(){
             //css #collapseinside4 > form > div > input
             var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
             searchInput.sendKeys("skyline");
-            driver.wait(until.elementIsVisible(driver.findElement(By.css('#collapseinside4 > ul'))));
+            driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//li'))));
             
-            var applyFilter = await driver.findElement(By.css('#collapseinside4 > ul > li > div > label > abbr'));
+            var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'));
             console.log(await applyFilter.getText());
             applyFilter.click();
-
         }
         catch (error) {
+            catchScreen.takeScreenshot(driver, 'skyline_screenshot');
             var err = "skylineNotFound!";
             console.log(err);
         }
-        finally{
-            catchScreen.takeScreenshot(driver, 'skyline_screenshot');
-        } 
     })
 });
 
