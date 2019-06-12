@@ -38,23 +38,21 @@ describe("challenge1 suite", function(){
         element.sendKeys("nissan");
         var click = await driver.findElement(By.xpath('//*[@ng-click="search()"]'));
         await click.click();
-        // var displayProp = await driver.findElement(By.id('serverSideDataTable_processing')).getAttribute("display");
-        // await driver.wait(until.elementTextContains(displayProp, 'none'));
-        await driver.wait(until.elementIsVisible(driver.findElement(By.id('serverSideDataTable > tbody', 24000))))
-        var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML');
-        return assert.include(html, "NISSAN");;
-
-    });
-
-    it("Should assert Nissan is in list of results", async function() {
         await driver.wait(until.titleContains('nissan'), 20000);
         var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
         // console.log(html)
         return assert.include(html, "NISSAN");
     });
 
+    // it("Should assert Nissan is in list of results", async function() {
+    //     await driver.wait(until.titleContains('nissan'), 20000);
+    //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+    //     // console.log(html)
+    //     return assert.include(html, "NISSAN");
+    // });
+
         // find model and click it and do stuff till it blows up
-    it('Using Filter options find model, search for Skyline', async function(){
+    it('Should search for Skyline', async function(){
         var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'));
         modelElement.click();
         
@@ -70,6 +68,9 @@ describe("challenge1 suite", function(){
             var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'));
             console.log(await applyFilter.getText());
             applyFilter.click();
+            var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+            // console.log(html)
+            return assert.include(html, "SKYLINE");
         }
         catch (error) {
             catchScreen.takeScreenshot(driver, 'skyline_screenshot');
