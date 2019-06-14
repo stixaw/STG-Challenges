@@ -54,22 +54,19 @@ describe("challenge1 suite", function(){
         // find model and click it and do stuff till it blows up
     it('Should search for Skyline', async function(){
         var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'));
-        modelElement.click();
+        await modelElement.click();
         
         try {
             //search for skyline model
             driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))));
-            //xpath of search input //*[@id="collapseinside4"]/form/div/input
-            //css #collapseinside4 > form > div > input
             var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
-            searchInput.sendKeys("skyline");
+            await searchInput.sendKeys("skyline");
             driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//li'))));
             
             var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'));
             console.log(await applyFilter.getText());
-            applyFilter.click();
+            await applyFilter.click();
             var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-            // console.log(html)
             return assert.include(html, "SKYLINE");
         }
         catch (error) {
