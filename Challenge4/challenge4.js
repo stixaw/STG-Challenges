@@ -1,55 +1,17 @@
-require('chromedriver');
-var webdriver = require('../node_modules/selenium-webdriver');
-var assert = require('../node_modules/chai').assert;
-
 const fib = require('./fibonacci');
 const numToString = require('./convertNumToString');
 
-describe("challenge1 suite", function(){
-    this.timeout(34000);
-    var driver;
-
-    it("Fibonacci series and words", function () {
+describe("challenge 4 Fibonacci Functions", () => {
+    it('should make individual calls to methods', () => {
         console.log(fib.fibonacci(0) + "...." + numToString.numToStr(fib.fibonacci(0)));
         console.log(fib.fibonacci(5) + "...." + numToString.numToStr(fib.fibonacci(5)));
         console.log(fib.fibonacci(15) + "...." + numToString.numToStr(fib.fibonacci(15)));
         console.log(fib.fibonacci(20) + "...." + numToString.numToStr(fib.fibonacci(20)));
         console.log(fib.fibonacci(25) + "...." + numToString.numToStr(fib.fibonacci(25)));
         console.log(fib.fibonacci(35) + "...." + numToString.numToStr(fib.fibonacci(35)));
+    })
 
-    });
-
-    it("challenge returns fib and string", function(){
+    it('should call a single function with a parameter of 30', () => {
         fib.fib_series(30);
-
-    });
-
-});
-
-    // it("Fibonacci series", function () {
-    //     console.log(fib.fibonacci(0));
-    //     console.log(fib.fibonacci(1));
-    //     console.log(fib.fibonacci(2));
-    //     console.log(fib.fibonacci(3));
-    //     console.log(fib.fibonacci(4));
-
-    // });
-
-    // it("Different solution using an array and iteration", function(){
-    //     fib.fib_series(5);
-    // });
-
-    // it("getNum function tests should handle up to 999", function(){
-    //     console.log(numToString.getNum(1));
-    //     console.log(numToString.getNum(99));
-    //     console.log(numToString.getNum(999));
-        
-    // });
-
-    // it("numToStr function tests should handle 999+", function(){
-        // console.log(numToString.numToStr(1));
-        // console.log(numToString.numToStr(199900));
-        // console.log(numToString.numToStr(400500701));
-        // console.log(numToString.numToStr(23400500701));
-        
-    // });
+    })
+})
