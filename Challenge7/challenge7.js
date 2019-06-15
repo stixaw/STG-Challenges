@@ -6,30 +6,30 @@ var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
 
-describe("challenge1 suite", function(){
+describe("challenge 7 suite", function (){
     this.timeout(34000);
     var driver;
 
-    before(async function () {
-        //initializing chrome driver
-        driver = await driverManager.getDriver('chrome');
+    before(() => {
+        driver = driverManager.getDriver('chrome');
         return driver;
-    });
+    })
 
     after(function () {
         return driver.quit();
-    });
+    })
 
-    it("It should open the copart website", async function() {
-        return await driver.get("http://www.copart.com");
-    });
-    
-    // If you don’t want to use promises, you can use awaits.  
-    // This is easier to understand than to use promise…. then(function()).
-    it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function(){
-        var title = await driver.getTitle();
-        return assert.include(title, "Auto Auction - Copart USA");
-    });
+    describe('Setup Test Open Copart Website', () => {
+        it('should open the copart website', () => {
+            return driver.get("http://www.copart.com");
+        })
+        
+        it('should have Copart USA title on page', async () =>{
+            driver.wait(until.elementLocated(By.css('[ng-bind-html="title"]')), 20000)
+            var title = await driver.getTitle();
+            return assert.include(title, "Auto Auction - Copart USA");
+        })
+    })
 
     // find search and type Nissan
     it("Should search on copart for Nissan", async function(){
