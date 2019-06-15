@@ -1,6 +1,6 @@
 require('chromedriver');
-var webdriver = require('../node_modules/selenium-webdriver');
-var assert = require('../node_modules/chai').assert;
+var webdriver = require('selenium-webdriver');
+var assert = require('chai').assert;
 const driverManager = require('../common/driver');
 const catchScreen = require('../common/screenshot');
 var By = webdriver.By;
@@ -56,18 +56,19 @@ describe("challenge 6 suite", function (){
                 driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))));
                 var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'));
                 await searchInput.sendKeys("skyline");
-                driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//li'))));
-                
-                var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'));
-                console.log('Available Filter', await applyFilter.getText());
-                await applyFilter.click();
-                var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-                return assert.include(html, "SKYLINE");
+                //if skyline is unavailable this element will not be seen
+                var results = await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//li'))));
+                if(results){
+                    var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'));
+                    await applyFilter.click();
+                    var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
+                    return assert.include(html, "SKYLINE");
+                }
             }
             catch (error) {
                 catchScreen.takeScreenshot(driver, 'skyline_screenshot');
                 var err = "skylineNotFound!";
-                console.log(err);
+                console.log('Error Thrown: ',err);
             }
         })
     })

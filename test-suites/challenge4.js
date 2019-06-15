@@ -1,5 +1,5 @@
-const fib = require('./fibonacci');
-const numToString = require('./convertNumToString');
+const fib = require('../helpers/fibonacci');
+const numToString = require('../helpers/convertNumToString');
 
 describe("challenge 4 Fibonacci Functions", () => {
     it('should make individual calls to methods', () => {

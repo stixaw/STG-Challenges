@@ -10,7 +10,7 @@ function takeScreenshot(driver, name){
         fs.writeFile("filename.jpg", decodedImage, function(err){console.log(err)});
         var d = new Date();
         var fn = name + d.getTime() + '.jpg';
-        fs.writeFile(fn, decodedImage, function(err){});
+        fs.writeFile('../screenshots/' + fn, decodedImage, function(err){});
         
     })
 }

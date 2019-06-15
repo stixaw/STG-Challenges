@@ -1,8 +1,8 @@
 require('chromedriver');
-var webdriver = require('../node_modules/selenium-webdriver');
-var assert = require('../node_modules/chai').assert;
+var webdriver = require('selenium-webdriver');
+var assert = require('chai').assert;
 const driverManager = require('../common/driver');
-const dictHelper = require('../common/dictionaryhelper')
+const dictHelper = require('../helpers/dictionaryhelper')
 var Key = webdriver.Key;
 var By = webdriver.By;
 var until = webdriver.until;
