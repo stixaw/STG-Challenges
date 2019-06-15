@@ -6,6 +6,19 @@ var By = webdriver.By;
 var until = webdriver.until;
 var Key = webdriver.Key;
 
+/*
+ why not build a map of all the links on a certain section.  
+ For this challenge, take a look at https://www.copart.com main page.  
+ Go to the Makes/Models section of the page.  
+ Create a 2 dimensional array that stores all the values displayed on the page along w/ the URL for that link.  
+ Once you have this array, you can verify all the elements in the array navigates to the correct page.  
+ Don’t forget to verify some piece of data on the page.  
+ To get started, inspect the code and notice the section of the page is built using angular.  
+ There is no static id or element class that identifies each element in this section.  
+ Everything is generic.  The only way to build a function/object for this section is to loop through each element.  
+ Hint: xpath is easiest.  ***Note, you did part of this in challenge 3.
+*/
+
 describe("challenge 7 suite", function (){
     this.timeout(34000);
     var driver;
