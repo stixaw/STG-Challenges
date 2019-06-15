@@ -19,7 +19,7 @@ describe('challenge 3 suite', function(){
         return driver.quit();
     })
 
-    describe('Setup Test', () => {
+    describe('GoTo Copart.com', () => {
         it('It should open the copart website', () => {
             return driver.get("http://www.copart.com");
         })
