@@ -39,9 +39,7 @@ describe('challenge 1 suite', function(){
 
         it('Should assert 911 is in list of results', async () => {
             await driver.wait(until.titleContains('Porsche'), 10000);
-            console.log(await driver.getTitle());
             var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-            // console.log(html);
             return assert.include(html, "911");
         })
     })

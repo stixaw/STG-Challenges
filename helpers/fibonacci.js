@@ -5,7 +5,6 @@ module.exports = {
  const numStr= require('./convertNumToString');
 
 function fibonacci(number){
-
   var result;
     
   if (number <= 1) {
@@ -14,8 +13,7 @@ function fibonacci(number){
   }
    
   result = fibonacci(number - 1) + fibonacci(number - 2);
-  return result;
-    
+  return result;  
 }
 
 function fib_series(n){
@@ -25,15 +23,12 @@ function fib_series(n){
   }
   else{  
     let arr =[0,1];
- 
     for (let i = 2; i < n + 1; i++){
       arr.push(arr[i - 2] + arr[i -1]);
     }
-    //return arr[n]
-    //return arr
+
     for (i = 0; i < arr.length; i++){
       console.log(arr[i]+ "..." + (numStr.numToStr(arr[i]))); 
-
     }
   }
 }

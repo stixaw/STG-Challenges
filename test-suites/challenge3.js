@@ -48,8 +48,7 @@ describe('challenge 3 suite', function(){
         //for loop:
         it('should get href for each popular search using for loop and print to console', async () => {
             var popular_array = await driver.findElements(By.xpath("//div[@id='tabTrending']//a"));
-            console.log(popular_array.length);
-
+            
             for(var i = 0; i < popular_array.length; i++){
                 var text = await popular_array[i].getText();
                 var html = await popular_array[i].getAttribute("href");
