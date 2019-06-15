@@ -11,9 +11,9 @@ describe("challenge1 suite", function(){
     this.timeout(34000);
     var driver;
 
-    before(async function () {
+    before(() => {
         //initializing chrome driver
-        driver = await driverManager.getDriver('chrome');
+        driver = driverManager.getDriver('chrome');
         return driver;
     });
 
@@ -21,19 +21,20 @@ describe("challenge1 suite", function(){
         return driver.quit();
     });
 
-    it("It should open the copart website", async function() {
-        return await driver.get("http://www.copart.com");
+    it("It should open the copart website", () => {
+        return driver.get("http://www.copart.com");
     });
     
     // If you don’t want to use promises, you can use awaits.  
     // This is easier to understand than to use promise…. then(function()).
-    it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async function(){
+    it("The title is 'Auto Auction - Copart USA - Salvage Cars For Sale'", async () =>{
+        driver.wait(until.elementLocated(By.css('[ng-bind-html="title"]')), 20000)
         var title = await driver.getTitle();
         return assert.include(title, "Auto Auction - Copart USA");
     });
 
     // search for Nissan
-    it("Should search on copart for Nissan", async function(){
+    it("Should search on copart for Nissan", async () =>{
         var element = await driver.findElement(By.id("input-search"));
         element.sendKeys("nissan");
         var click = await driver.findElement(By.xpath('//*[@ng-click="search()"]'));
@@ -44,15 +45,8 @@ describe("challenge1 suite", function(){
         return assert.include(html, "NISSAN");
     });
 
-    // it("Should assert Nissan is in list of results", async function() {
-    //     await driver.wait(until.titleContains('nissan'), 20000);
-    //     var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML');
-    //     // console.log(html)
-    //     return assert.include(html, "NISSAN");
-    // });
-
         // find model and click it and do stuff till it blows up
-    it('Should search for Skyline', async function(){
+    it('Should search for Skyline', async () => {
         var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'));
         await modelElement.click();
         
