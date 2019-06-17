@@ -1,13 +1,13 @@
 module.exports = {
     sortfunction: sortfunction,
-    addPairValue: addPairValue
+    addKeyValuePair: addKeyValuePair
 }
 
 function sortfunction(a, b){
     return (a - b)
 }
 
-function addPairValue(item, dict){
+function addKeyValuePair(item, dict){
     if (item in dict){
         dict[item] += 1
     }
