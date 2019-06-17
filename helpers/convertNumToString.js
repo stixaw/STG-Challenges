@@ -1,7 +1,7 @@
 module.exports = {
     numToStr: numToString,
     getNum: getNum
-};
+}
 
 function numToString(number){
     var stringNum = "";

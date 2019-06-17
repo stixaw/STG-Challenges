@@ -1,6 +1,5 @@
-require('chromedriver');
-var webDriver = require('../node_modules/selenium-webdriver');
-//const {Builder, By, until, Key} = require('../node_modules/selenium-webdriver');
+require('chromedriver')
+var webDriver = require('../node_modules/selenium-webdriver')
 
 module.exports = {
     getDriver: getDriver,
@@ -8,26 +7,24 @@ module.exports = {
 }
 
 function getDriver1(browserType){
-    driver = new webDriver.Builder().forBrowser(browserType.toLowerCase()).build();
-    driver.manage().window().maximize();
+    driver = new webDriver.Builder().forBrowser(browserType.toLowerCase()).build()
+    driver.manage().window().maximize()
 
-    return driver;
-
+    return driver
 }
 
-
 function getDriver(browser, rm, mobileType){  
-    var builder = new webDriver.Builder();
+    var builder = new webDriver.Builder()
 
     //remote server
     if(rm != null){
-        builder.usingServer(rm);
+        builder.usingServer(rm)
     }
 
     if(browser == null){
-        browser = 'chrome';
+        browser = 'chrome'
     }
-    builder.forBrowser(browser.toLowerCase());
+    builder.forBrowser(browser.toLowerCase())
 
     if(mobileType != null ){
         var caps = {
@@ -38,14 +35,13 @@ function getDriver(browser, rm, mobileType){
                     //deviceName: 'iPhone X'
                 }
             }
-        };
-        builder.withCapabilities(caps);
+        }
+        builder.withCapabilities(caps)
     }
-    driver = builder.build();
+    driver = builder.build()
 
     if(mobileType == null){
-        driver.manage().window().maximize();
+        driver.manage().window().maximize()
     }
-    return driver;
-
-};
+    return driver
+}

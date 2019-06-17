@@ -4,14 +4,14 @@ module.exports = {
 }
 
 function sortfunction(a, b){
-    return (a - b) 
+    return (a - b)
 }
 
 function addPairValue(item, dict){
     if (item in dict){
-        dict[item] += 1;
+        dict[item] += 1
     }
     else{
-        dict[item] = 1;
+        dict[item] = 1
     }
 }
