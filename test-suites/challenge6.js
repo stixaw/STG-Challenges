@@ -48,8 +48,8 @@ describe("challenge 6 suite", function (){
     describe('Search for Skyline', () => {
             // find model and click it and do stuff till it blows up
         it('should try to find a model with Skyline in results', async () => {
-            var modelElement = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'))
-            await modelElement.click()
+            var modelFilter = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'))
+            await modelFilter.click()
             
             try {
                 //search for skyline model
