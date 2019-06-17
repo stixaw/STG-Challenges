@@ -68,7 +68,7 @@ describe("challenge 7 suite", function (){
             return assert(array_of_Arrays.length === 20)
         })
 
-        it('Should go to each url in Array of Arrays confirms carModel on page', (done) => {
+        it('Should go to each url in Array of Arrays confirms carModel on page', async () => {
             let carModel
             let carUrl
 
@@ -79,14 +79,13 @@ describe("challenge 7 suite", function (){
                 
                 try{
                     console.log(`Url ${i} - ${carUrl}`)
-                    driver.get(carUrl).then( async () => {
-                        let innerText = await driver.findElement(By.tagName('body')).getAttribute('innerText')
-                        assert.include(innerText, carModel)
-                        done()
-                    })
+                    driver.get(carUrl)
+                    let innerHTML = await driver.findElement(By.tagName('body')).getAttribute('innerHTML')
+                    if(innerHTML.indexOf(carModel) !== -1)
+                        assert.isTrue(innerHTML.indexOf(carModel) !== -1)
                 }
                 catch (error) {
-                    catchScreen.takeScreenshot(driver, carModel + '_screenshot')
+                    driverManager.takeScreenshot(driver, carModel + '_screenshot')
                     var err = carModel + 'NotFound!'
                     console.log('Error Thrown: ',err)
                 }
