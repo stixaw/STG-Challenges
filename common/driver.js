@@ -1,9 +1,11 @@
 require('chromedriver')
-var webDriver = require('../node_modules/selenium-webdriver')
+fs = require('fs')
+webDriver = require('../node_modules/selenium-webdriver')
 
 module.exports = {
     getDriver: getDriver,
-    getDriver1: getDriver1
+    getDriver1: getDriver1,
+    takeScreenshot: takeScreenshot
 }
 
 function getDriver1(browserType){
@@ -11,6 +13,18 @@ function getDriver1(browserType){
     driver.manage().window().maximize()
 
     return driver
+}
+
+function takeScreenshot(driver, name){
+    driver.takeScreenshot()
+    .then(function(base64Image){
+        var decodedImage = new Buffer.from(base64Image,'base64');
+        fs.writeFile("filename.jpg", decodedImage, function(err){console.log(err)});
+        var d = new Date();
+        var fn = name + d.getTime() + '.jpg';
+        fs.writeFile('../screenshots/' + fn, decodedImage, function(err){});
+        
+    })
 }
 
 function getDriver(browser, rm, mobileType){  
