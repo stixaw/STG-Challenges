@@ -1,6 +1,6 @@
 require('chromedriver')
-webdriver = require('../node_modules/selenium-webdriver')
-assert = require('../node_modules/chai').assert
+webdriver = require('selenium-webdriver')
+assert = require('chai').assert
 driverManager = require('../common/driver')
 By = webdriver.By
 until = webdriver.until
