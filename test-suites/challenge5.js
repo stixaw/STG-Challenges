@@ -41,9 +41,10 @@ describe("challenge 5 suite", function(){
         })
     })
 
-    describe('Search results for Porche', () => {
-        it('should find PORSCHE in results', async () => {
-            var searchField = await driver.findElement(By.xpath('//*[@id="serverSideDataTable_filter"]/label/input'))
+    describe('Filter Porsche', () => {
+        it('should find porsche in results after applying the filter PORSCHE', async () => {
+            var searchField = await driver.findElement(By.css('#serverSideDataTable_filter input'))
+            await searchField.click()
             await searchField.sendKeys("Porsche")
             searchField.sendKeys(Key.ENTER)
 

@@ -31,17 +31,21 @@ describe('challenge 2 suite', function(){
         })
     })
 
-    describe('Search for exotic and find Porsche in results', () => {
+    describe('Search Exotic', () => {
         // have to do find element
         it('should find Exotic results', async () => {
             var element = await driver.findElement(By.id("input-search"))
-            return element.sendKeys("Exotic" + Key.ENTER)
+            element.sendKeys("Exotic" + Key.ENTER)
+            await driver.wait(until.titleContains('Exotic For Auction at Copart'), 20000)
+            var title = await driver.getTitle()
+            return assert.include(title, 'Exotic')
+
         })
 
         it('should find PORSCHE in results', async () => {
-            await driver.wait(until.titleContains('Exotic For Auction at Copart'), 20000)
-            var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML')
-            return assert.include(html, "Porsche")
+            await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody', 10000))))
+            var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML')
+            return assert.include(html, "PORSCHE")
         })
     })
 })
