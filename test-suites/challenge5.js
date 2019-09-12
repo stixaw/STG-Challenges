@@ -74,7 +74,9 @@ describe("challenge 5 suite", function(){
 
             for(var i = 0; i < sorted_Models.length-1; i++){
                 var model = await sorted_Models[i].getText()
-                dictHelper.addKeyValuePair(model, model_dict)
+                if(model !== ''){
+                    dictHelper.addKeyValuePair(model, model_dict)
+                }
             }
 
             console.log('***model: count***')
@@ -92,22 +94,24 @@ describe("challenge 5 suite", function(){
 
             for(var i = 0; i < carModel_Array.length-1; i++){
                 var damageType = await carModel_Array[i].getText()
-                switch(damageType){
-                    case 'REAR END':
-                        dictHelper.addKeyValuePair(damageType, damage_dict)
-                        break
-                    case 'FRONT END':
-                        dictHelper.addKeyValuePair(damageType, damage_dict)
-                        break
-                    case 'MINOR DENT/SCRATCHES':
-                        dictHelper.addKeyValuePair(damageType, damage_dict)
-                        break
-                    case 'UNDERCARRIAGE':
-                        dictHelper.addKeyValuePair(damageType, damage_dict)
-                        break
-                    default:
-                        dictHelper.addKeyValuePair('MISC', damage_dict)
-                        break
+                if(damageType !== ''){
+                    switch(damageType){
+                        case 'REAR END':
+                            dictHelper.addKeyValuePair(damageType, damage_dict)
+                            break
+                        case 'FRONT END':
+                            dictHelper.addKeyValuePair(damageType, damage_dict)
+                            break
+                        case 'MINOR DENT/SCRATCHES':
+                            dictHelper.addKeyValuePair(damageType, damage_dict)
+                            break
+                        case 'UNDERCARRIAGE':
+                            dictHelper.addKeyValuePair(damageType, damage_dict)
+                            break
+                        default:
+                            dictHelper.addKeyValuePair('MISC', damage_dict)
+                            break
+                    }
                 }
             }
             console.log('***damage: count***')
