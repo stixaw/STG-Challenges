@@ -57,14 +57,11 @@ describe("challenge 6 suite", function (){
                 var searchInput = await driver.findElement(By.xpath('//div[@id="collapseinside4"]//input[@placeholder="Search"]'))
                 await searchInput.sendKeys('skyline')
                
-                //if skyline is unavailable this element will not be seen
-                var results = await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//li'))))
-                if(results){
-                    var applyFilter = await driver.findElement(By.xpath('//abbr[contains(text(),"Skyline")]'))
-                    await applyFilter.click()
-                    var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML')
-                    return assert.include(html, 'SKYLINE')
-                }
+                var applyFilter = await driver.findElement(By.css('input#lot_model_descSKYLINE'))
+                await applyFilter.click()
+                await driver.wait(until.elementIsNotVisible(driver.findElement(By.id('serverSideDataTable_processing',10000))))
+                var html = await driver.findElement(By.css('#serverSideDataTable tbody')).getAttribute('innerText')
+                return assert.include(html, 'SKYLINE')
             }
             catch (error) {
                 driverManager.takeScreenshot(driver, 'skyline_screenshot')
