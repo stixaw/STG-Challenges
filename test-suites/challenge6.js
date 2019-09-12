@@ -33,13 +33,14 @@ describe("challenge 6 suite", function (){
     describe('Search for Nissan', () => {
         // search for Nissan
         it('should find results for nisson', async () =>{
-            var element = await driver.findElement(By.id("input-search"))
-            element.sendKeys("nissan")
-            var click = await driver.findElement(By.xpath('//*[@ng-click="search()"]'))
-            await click.click()
+            var searchField = await driver.findElement(By.id("input-search"))
+            searchField.sendKeys("nissan")
+            var button = await driver.findElement(By.xpath('//*[@ng-click="search()"]'))
+            await button.click()
 
             await driver.wait(until.titleContains('nissan'), 20000)
-            var html = await driver.findElement(By.tagName("body")).getAttribute('innerHTML')
+            await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//table[@id="serverSideDataTable"]//tbody', 10000))))
+            var html = await driver.findElement(By.id('serverSideDataTable')).getAttribute('innerHTML')
             return assert.include(html, "NISSAN")
         })
     })
@@ -47,13 +48,14 @@ describe("challenge 6 suite", function (){
     describe('Search for Skyline', () => {
             // find model and click it and do stuff till it blows up
         it('should try to find a model with Skyline in results', async () => {
-            var modelFilter = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'))
+            var modelFilter = driver.wait(until.elementLocated(By.xpath('//*[@data-uname="ModelFilter"]')), 20000)
+            // var modelFilter = await driver.findElement(By.xpath('//*[@data-uname="ModelFilter"]'))
             await modelFilter.click()
             
             try {
                 //search for skyline model
-                driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))))
-                var searchInput = await driver.findElement(By.xpath('//*[@id="collapseinside4"]//input[1]'))
+                driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//div[@id="collapseinside4"]//input[@placeholder="Search"]'))))
+                var searchInput = await driver.findElement(By.xpath('//div[@id="collapseinside4"]//input[@placeholder="Search"]'))
                 await searchInput.sendKeys('skyline')
                
                 //if skyline is unavailable this element will not be seen
