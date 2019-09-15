@@ -118,7 +118,7 @@ var formBody = {
 	"watchListOnly": "false"
 }
 
-var cookie = 's_fid=3BFC35D460630745-31354C77F43D45F6; __cfduid=d522c6367c9915be293cba6b34b4ab9991565581886; s_vi=[CS]v1|2EA8711F0503200B-600011826001015B[CE]; OAID=066c33f79f0545bf809b8bc28ee2bf58; g2app.locationInfo=%7B%22countryCode%22%3A%22US%22%2C%22threeCharCountryCode%22%3A%22USA%22%2C%22stateName%22%3A%22Utah%22%2C%22stateCode%22%3A%22UT%22%2C%22cityName%22%3A%22Sandy%22%2C%22latitude%22%3A40.5794%2C%22longitude%22%3A-111.8816%2C%22zipCode%22%3A%2284070%22%2C%22countyName%22%3A%22Salt%20Lake%22%2C%22countyCode%22%3A%22035%22%2C%22metroName%22%3A%22%22%2C%22metroCode%22%3A%22%22%2C%22accuracy%22%3A%224%22%7D; visid_incap_242093=xkACFTEiTNWaPqasMe1J2DfiUF0AAAAAQkIPAAAAAACAR2OOAUI8ZuJ3FoZbjVCjPoerjCjPG0F3; g2usersessionid=f40037d6ef825cec7e96c9bb6aade4be; G2JSESSIONID=D560394B043DBF6749730102503F90B0-n2; userLang=en; copartTimezonePref=%7B%22displayStr%22%3A%22MDT%22%2C%22offset%22%3A-6%2C%22dst%22%3Atrue%2C%22windowsTz%22%3A%22America%2FDenver%22%7D; timezone=America%2FDenver; s_cc=true; OAGEO=US%7C%7C%7C%7C%7C%7C%7C%7C%7C%7C; usersessionid=79423db72fe159b4ef3a425b9e423f26; s_ppvl=public%253Ahomepage%2C66%2C20%2C714%2C1343%2C713%2C1440%2C900%2C2%2CP; s_ppv=member%253AsearchResults%2C66%2C28%2C1173%2C1354%2C712%2C1440%2C900%2C2%2CP; s_pv=member%3AsearchResults; s_vnum=1568173883429%26vn%3D11; s_invisit=true; s_lv_s=Less%20than%201%20day; incap_ses_1179_242093=XMQFWqFEzmK7PboFnqZcEEpncF0AAAAAYMu0P8Qz4zR4hNpxceGcdg==; s_nr=1567647577201-Repeat; s_lv=1567647577203; s_sq=copart-g2-us-prod%3D%2526c.%2526a.%2526activitymap.%2526page%253Dmember%25253AsearchResults%2526link%253DSearch%2526region%253Dsearch-form%2526pageIDType%253D1%2526.activitymap%2526.a%2526.c%2526pid%253Dmember%25253AsearchResults%2526pidt%253D1%2526oid%253DSearch%2526oidt%253D3%2526ot%253DSUBMIT'
+var cookie = 's_fid=3BFC35D460630745-31354C77F43D45F6; __cfduid=d522c6367c9915be293cba6b34b4ab9991565581886; s_vi=[CS]v1|2EA8711F0503200B-600011826001015B[CE]; OAID=066c33f79f0545bf809b8bc28ee2bf58; g2app.locationInfo=%7B%22countryCode%22%3A%22US%22%2C%22threeCharCountryCode%22%3A%22USA%22%2C%22stateName%22%3A%22Utah%22%2C%22stateCode%22%3A%22UT%22%2C%22cityName%22%3A%22Sandy%22%2C%22latitude%22%3A40.5794%2C%22longitude%22%3A-111.8816%2C%22zipCode%22%3A%2284070%22%2C%22countyName%22%3A%22Salt%20Lake%22%2C%22countyCode%22%3A%22035%22%2C%22metroName%22%3A%22%22%2C%22metroCode%22%3A%22%22%2C%22accuracy%22%3A%224%22%7D; visid_incap_242093=xkACFTEiTNWaPqasMe1J2DfiUF0AAAAAQkIPAAAAAACAR2OOAUI8ZuJ3FoZbjVCjPoerjCjPG0F3; g2app.searchResultsPageLength=100; incap_ses_1179_242093=XJFtYbwHLWjExsFboKZcEBanfV0AAAAAdyprGmPkoLSsJDlj+7tBfA==; g2usersessionid=713bc97ef3fb607e35728bb615a1ad66; G2JSESSIONID=0DA3FBF332D524B86F9E3D1906251209-n2; userLang=en; copartTimezonePref=%7B%22displayStr%22%3A%22MDT%22%2C%22offset%22%3A-6%2C%22dst%22%3Atrue%2C%22windowsTz%22%3A%22America%2FDenver%22%7D; timezone=America%2FDenver; s_depth=1; s_pv=public%3Ahomepage; s_vnum=1570850893984%26vn%3D6; s_invisit=true; s_lv_s=Less%20than%207%20days; s_cc=true; OAGEO=US%7C%7C%7C%7C%7C%7C%7C%7C%7C%7C; usersessionid=79423db72fe159b4ef3a425b9e423f26; s_ppvl=22; s_nr=1568515894415-Repeat; s_lv=1568515894417; s_sq=copart-g2-us-prod%3D%2526c.%2526a.%2526activitymap.%2526page%253Dpublic%25253Ahomepage%2526link%253DSearch%2526region%253Dsearch-form%2526pageIDType%253D1%2526.activitymap%2526.a%2526.c%2526pid%253Dpublic%25253Ahomepage%2526pidt%253D1%2526oid%253DSearch%2526oidt%253D3%2526ot%253DSUBMIT; s_ppv=public%253Ahomepage%2C66%2C20%2C714%2C1440%2C713%2C1440%2C900%2C2%2CP'
 
 var my_headers ={
     "Content-Type": "application/json",
@@ -145,14 +145,14 @@ var my_headers ={
     Output how many in the results are found.  Do this w/ 10 different search parameters of your favorite cars.
 */
 
-describe('Challenge 8', () => {
-    it ('search for honda using rest api', async () => {
+describe('Challenge 9', () => {
+    it ('search for models using rest api', async () => {
    		var searchlist = ["volkswagen","honda","toyota","nissan","camry","acura","GMC","ford","econo"]
 		// var searchlist = ["honda"]
-		const fs = require('fs')
+
 		for (var i=0; i< searchlist.length; i++){
 			formBody.query = searchlist[i]
-			console.log(formBody.query)
+			// console.log(formBody.query)
 
 			request.post(
 				url,
@@ -162,11 +162,16 @@ describe('Challenge 8', () => {
 				function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						var results = JSON.parse(response.body)
-						console.log(results.data.query.query[0] + " - " + results.data.results.totalElements)
+                        console.log(results.data.query.query[0] + " - " + results.data.results.totalElements)
+                        
+                        var firstContent = results.data.results.content[0]
+                        var lotNumStr = firstContent['lotNumberStr']
+                        console.log(typeof(lotNumStr) === 'string')
+                        var ln = firstContent['ln']
+                        console.log(typeof(ln) === 'number')
+                        var mkn = firstContent['mkn']
+                        console.log(typeof(mkn) === 'string')
 
-						fs.appendFile('data.txt', results.data.query.query[0] + " - " + results.data.results.totalElements + "\n", function (err) {
-							if(err) throw err;
-						})
 					}
 				}
 			);
@@ -174,4 +179,3 @@ describe('Challenge 8', () => {
 		
 	});
 })
-
