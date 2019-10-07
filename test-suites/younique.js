@@ -46,15 +46,35 @@ describe('challenge 1 suite', function(){
             await driver.wait(until.elementLocated(By.css("#cartview", 10000)))
             // Get Cart Items per row:
             var item_row = await driver.findElement(By.xpath("//tr[@class='itemRow cartContents ']"))
-            var item_row_unit_price = await driver.findElement(By.xpath("td//td[@class='clr-fix ctr']//*span")).getAttribute('innerText')
+            var item_row_unit_price = await driver.findElement(By.css("td.clr-fix")).getAttribute('innerText')
+            item_row_unit_price = item_row_unit_price.replace().replace('$', '')
             var item_row_quantity = await driver.findElement(By.xpath("//input[@data-testid='quantityInput']")).getAttribute('value')
             var item_row_total = await driver.findElement(By.css(".receiptLineTotal")).getText()
+            item_row_total = item_row_total.replace('$', '')
 
             console.log('unit price', item_row_unit_price)
             console.log('quantity', item_row_quantity)
             console.log('row total', item_row_total)
+            
+            // Summary of cart
+            cart_summary =  await driver.findElements(By.xpath('//*[@id="cartview"]//td[contains(@class,"total")]'))
+            cart_summary_dict = {}
 
+            for(var i = 2; i < cart_summary.length -2; i += 2){
+                var key = await cart_summary[i].getText()
+                // key = key.replace(':', '')
+                console.log(key)
+                var value = await cart_summary[i+1].getText()
+                value = value.replace('$', '').replace(' USD', '')
+                console.log(value)
+                cart_summary_dict[key] = value
+            }
 
+            console.log(cart_summary_dict)
+
+            assert.equal(item_row_quantity, cart_summary_dict['Total Items:'])
+            assert.equal(item_row_quantity * item_row_unit_price, cart_summary_dict['Subtotal:'])
+            assert.equal(parseFloat(item_row_total) + parseFloat(cart_summary_dict['Shipping:']), cart_summary_dict['Total Balance Due:'])
 
                 
 
