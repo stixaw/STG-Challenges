@@ -1,25 +1,18 @@
-const fastcsv = require('fast-csv')
 const csv = require('csv-parser')
 const fs = require('fs')
-const searchlist = []
 
-fs.readFile('challenge10.csv', 'utf8', function (err, data) {
-  searchlist = data.split(/\r?\n/)
-  console.log('1 ', searchlist)
+const searchList = (csvFile) => new Promise(function (resolve) {
+  let sl = []
+  fs.createReadStream(csvFile)
+    .pipe(csv())
+    .on('data', (data) => {
+      sl.push(data)
+    })
+    .on('end', () => {
+      resolve(sl)
+    })
 })
 
-fs.readFile('challenge10.csv', function (err, data) {
-  csv(data, { columns: false, trim: true }, function (err, rows) {
-    searchlist.push(data)
-  })
-  console.log('3 ', searchlist)
-})
-
-fs.createReadStream('challenge10.csv')
-  .pipe(csv())
-  .on('data', (row) => {
-    searchlist.push(row)
-  })
-  .on('end', () => {
-    console.log('2 ', searchlist)
-  })
+module.exports = {
+  searchList
+}
