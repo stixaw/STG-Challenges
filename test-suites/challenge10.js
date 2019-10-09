@@ -1,5 +1,7 @@
 const request = require('request')
 const assert = require('chai').assert
+const csv = require('csv-parser')
+const fs = require('fs')
 
 var url = "https://www.copart.com/public/lots/search"
 
@@ -119,7 +121,6 @@ var my_headers = {
   "X-XSRF-TOKEN": "18bc1362-0eb5-4778-a784-f68ca0bfece3",
   "origin": "https://www.copart.com",
   "X-Requested-With": "XMLHttpRequest",
-  "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
   "cookie": cookie
 }
 /*
@@ -137,17 +138,32 @@ var my_headers = {
     Output how many in the results are found.  Do this w/ 10 different search parameters of your favorite cars.
 */
 
-describe('Challenge 9', () => {
-  it('search for models using rest api', async () => {
-    var searchlist = ["volkswagen", "honda", "toyota", "nissan", "camry", "acura", "GMC", "ford", "econo"]
-    // var searchlist = ["honda"]
+describe('Challenge 10', () => {
+  it('search list created from csv file using rest api', async () => {
+    // const searchList = ["volkswagen", "honda", "toyota", "nissan", "camry", "acura", "GMC", "ford", "econo"]
+    // const searchList = ["honda"]
+
     var lotNumStr
     var ln
     var mkn
 
-    for (var i = 0; i < searchlist.length; i++) {
-      formBody.query = searchlist[i]
-      // console.log(formBody.query)
+    const searchList = await new Promise(function (resolve) {
+      let sl = []
+      fs.createReadStream('challenge10.csv')
+        .pipe(csv())
+        .on('data', (data) => {
+          sl.push(data)
+        })
+        .on('end', () => {
+          resolve(sl)
+        })
+    })
+
+    // console.log('Search List: ', searchList)
+
+    for (var i = 0; i < searchList.length; i++) {
+      formBody.query = searchList[i]
+      console.log('FORM: ', formBody.query)
 
       request.post(
         url,
@@ -160,20 +176,20 @@ describe('Challenge 9', () => {
             var results = JSON.parse(response.body)
             console.log(results.data.query.query[0] + " - " + results.data.results.totalElements)
 
+            // fs.appendFile('data.txt', results.data.query.query[0] + " - " + results.data.results.totalElements + "\n", function (err) {
+            //   if (err) throw err;
+            // })
             var firstContent = results.data.results.content[0]
             lotNumStr = firstContent['lotNumberStr']
-            console.log(typeof (lotNumStr) === 'string')
             ln = firstContent['ln']
-            console.log(typeof (ln) === 'number')
             mkn = firstContent['mkn']
-            console.log(typeof (mkn) === 'string')
           }
           assert.equal(typeof (lotNumStr), 'string')
           assert.equal(typeof (ln), 'number')
           assert.equal(typeof (mkn), 'string')
         }
-      );
+      )
     }
-
-  });
+  })
 })
+
